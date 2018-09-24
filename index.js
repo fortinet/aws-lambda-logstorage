@@ -15,6 +15,13 @@ TABLE_NAME: (DynamoDB table name)
 console.log('Loading Log Storage lambda function');
 
 const AWS = require('aws-sdk');
+// lock the API versions
+AWS.config.apiVersions = {
+    lambda: '2015-03-31',
+    dynamodb: '2012-08-10',
+    apiGateway: '2015-07-09'
+};
+
 const dynamodb = new AWS.DynamoDB.DocumentClient();
 
 function FStitchLog(params) {
@@ -25,7 +32,7 @@ function FStitchLog(params) {
     // information fields
     this.email = params.email || '';
     this.stitchName = params.data.stitch;
-    this.eventType = params.data.eventtype,
+    this.eventType = params.data.eventtype;
     this.timestamp = params.data.time * 1000;
 
     // log fields
@@ -33,8 +40,8 @@ function FStitchLog(params) {
 }
 
 exports.handler = (event, context, callback) => {
-    console.log('Request received: \n' + JSON.stringify(event));
-    console.log('Context received: \n' + JSON.stringify(context));
+    console.log(`Request received: \n${JSON.stringify(event)}`);
+    console.log(`Context received: \n${JSON.stringify(context)}`);
 
     let item;
 
@@ -47,7 +54,7 @@ exports.handler = (event, context, callback) => {
         return;
     }
 
-    console.log('Item init: ' + JSON.stringify(item, null, 2));
+    console.log(`Item init: ${JSON.stringify(item, null, 2)}`);
 
     dynamodb.put({
         TableName: process.env.TABLE_NAME,
@@ -55,10 +62,10 @@ exports.handler = (event, context, callback) => {
     }, function(error, data) {
         if (error) {
             let errorMessage = JSON.stringify(error, null, 2);
-            console.log('Failed to get for: ' + errorMessage);
+            console.log(`Failed to get for: ${errorMessage}`);
             callback(errorMessage);
         } else {
-            console.log('DynamoDB put succeeded: ' + JSON.stringify(data, null, 2));
+            console.log(`DynamoDB put succeeded: ${JSON.stringify(data, null, 2)}`);
             callback(null, item);
         }
     });

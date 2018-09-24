@@ -1,0 +1,28 @@
+{
+  "name": "aws-lambda-logstorage",
+  "version": "1.0.0",
+  "description": "Save log to DB storage",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "pretest": "eslint --fix .",
+    "test": "nyc mocha --recursive './test/mocha/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/fortinet/aws-lambda-logstorage"
+  },
+  "author": "fortinet",
+  "license": "MIT",
+  "devDependencies": {
+    "aws-sdk": "^2.320.0",
+    "chai": "^4.1.2",
+    "eslint": "^5.4.0",
+    "eslint-plugin-mocha": "^5.2.0",
+    "mocha": "^5.2.0",
+    "nyc": "^13.0.1",
+    "sinon": "^6.3.4"
+  }
+}

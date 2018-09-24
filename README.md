@@ -1,6 +1,8 @@
-<h1>FortiOS AWS Lambda Function Setup Guide</h1>
+# FortiGate aws-lambda-logstorage
 
-Updated on 2018-06-01
+## FortiOS AWS Lambda Function Setup Guide
+
+Last Updated on 2018-09-24
 
 **Instructions**
 
@@ -9,7 +11,7 @@ Updated on 2018-06-01
 * [API Gateway](#API\ Gateway)
 * [FortiOS Configuration](#FortiOS\ Configuration)
 
-# DynamoDB
+## DynamoDB
 1. Choose _DynamoDB_ from AWS services.
 2. Create table.
     * Choose a recognizable table name. In this case, it could be `FosLog`. Take a note of this table name, we will use it later in Lambda function code.
@@ -18,7 +20,7 @@ Updated on 2018-06-01
         * __Primary sort key__: `timestamp` (Number)
     * Check _use default settings_ if the default quota works for you.
 
-# Lambda Function
+## Lambda Function
 1. Choose _Lambda_ from AWS services.
 2. Create function.
     * Choose _Author from scrach_
@@ -30,7 +32,7 @@ Updated on 2018-06-01
         * Replace default _index.js_ with the corresponding one in this repository.
         * In Environment variables, input _TABLE_NAME_ -> `FosLog` (or your own table name).
 
-# API Gateway
+## API Gateway
 1. Choose _API Gateway_ from AWS services.
 2. Create API.
     * Select _New API_. Input an API name like `FortiOS Log Storage`. For Endpoint type choice, please refer to [this post](https://aws.amazon.com/about-aws/whats-new/2017/11/amazon-api-gateway-supports-regional-api-endpoints/).
@@ -46,7 +48,7 @@ Updated on 2018-06-01
     * Associate the created API.
     * Add the created API Key to the Usage Plan.
 
-# FortiOS Configuration
+## FortiOS Configuration
 1. In _Security Fabric_ -> _Settings_, enable _FortiGate Telemetry_.
 2. In _Security Fabric_ -> Automation, click _Create New_.
     * Choose a trigger.
@@ -55,3 +57,11 @@ Updated on 2018-06-01
     * Input the API Key.
     * Click OK to save the configuration.
 
+
+# Support
+Note Fortinet-provided scripts (in this GitHub project and others) are not supported within regular Fortinet technical support scope.
+For direct issues, please refer to the [Issues](../../issues) tab of this GitHub project.
+For other questions related to the Lambda scripts, contact [github@fortinet.com](mailto:github@fortinet.com).
+
+## License
+[License](./LICENSE) © Fortinet Technologies. All rights reserved.
