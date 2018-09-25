@@ -12,9 +12,11 @@ TABLE_NAME: (DynamoDB table name)
 */
 
 
+const AWS = require('aws-sdk');
+const logger = require('./logger');
+logger.wrapConsole(console);
 console.log('Loading Log Storage lambda function');
 
-const AWS = require('aws-sdk');
 // lock the API versions
 AWS.config.apiVersions = {
     lambda: '2015-03-31',
