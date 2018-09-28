@@ -2,6 +2,7 @@
 **/dist
 **/local
 **/local*
+!scripts/local*
 
 # npm
 **/node_modules

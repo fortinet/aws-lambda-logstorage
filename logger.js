@@ -29,7 +29,7 @@ function wrapConsole(console) {
         console._debug = console.debug;
         console.debug = function() {
             if (!process.env.DEBUG_MODE === false) {
-                this._info.apply(this, ['debug:'].concat(Array.from(arguments)));
+                this._debug.apply(this, ['debug:'].concat(Array.from(arguments)));
             }
         };
     }

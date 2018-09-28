@@ -1,0 +1,17 @@
+language: node_js
+node_js: 8.11.1
+script:
+  - npm install
+  - npm run build
+  - git describe
+deploy:
+  provider: releases
+  api_key:
+    secure:
+  file_glob: true
+  file: dist/*
+  skip_cleanup: true
+  on:
+    repo: fortinet/aws-lambda-logstorage
+    tags: true
+    branch: master

@@ -15,7 +15,7 @@ TABLE_NAME: (DynamoDB table name)
 const AWS = require('aws-sdk');
 const logger = require('./logger');
 logger.wrapConsole(console);
-console.log('Loading Log Storage lambda function');
+console.debug('Loading Log Storage lambda function');
 
 // lock the API versions
 AWS.config.apiVersions = {
@@ -25,6 +25,22 @@ AWS.config.apiVersions = {
 };
 
 const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+const createApiGatewayResponse = function(httpStatusCode, body, headers, isBase64Encoded = false) {
+    var response = {
+        isBase64Encoded: !!isBase64Encoded,
+        statusCode: isNaN(httpStatusCode) ? 500 : parseInt(httpStatusCode),
+        body: ''
+    };
+    try {
+        if (headers) { response.headers = headers }
+        if (body) { response.body = body }
+    } catch (error) {
+        response.statusCode = 500;
+        response.body = error.errorMessage;
+    }
+    return response;
+};
 
 function FStitchLog(params) {
     // primary fields
@@ -41,34 +57,40 @@ function FStitchLog(params) {
     this.log = params.data.rawlog;
 }
 
-exports.handler = (event, context, callback) => {
-    console.log(`Request received: \n${JSON.stringify(event)}`);
-    console.log(`Context received: \n${JSON.stringify(context)}`);
+exports.handler = async (event, context, callback) => {
+    console.debug(`Request received: \n${JSON.stringify(event)}`);
+    console.debug(`Context received: \n${JSON.stringify(context)}`);
 
-    let item;
+    let item, responseStatusCode, body, headers;
 
     try {
-        item = new FStitchLog(event);
+        // make this function compatible with Api Gateway whether using aws
+        // proxy integration or not.
+        body = event.hasOwnProperty('body') ? JSON.parse(event.body) : event;
+        item = new FStitchLog(body);
     } catch (e) {
-        callback({
-            errorMessage: 'Missing necessary log field.'
-        });
+        callback(null,
+            createApiGatewayResponse(500, {
+                errorMessage: 'Missing necessary log field.'
+            }));
         return;
     }
 
-    console.log(`Item init: ${JSON.stringify(item, null, 2)}`);
+    console.debug(`Item init: ${JSON.stringify(item, null, 2)}`);
 
-    dynamodb.put({
-        TableName: process.env.TABLE_NAME,
-        Item: item
-    }, function(error, data) {
-        if (error) {
-            let errorMessage = JSON.stringify(error, null, 2);
-            console.log(`Failed to get for: ${errorMessage}`);
-            callback(errorMessage);
-        } else {
-            console.log(`DynamoDB put succeeded: ${JSON.stringify(data, null, 2)}`);
-            callback(null, item);
-        }
-    });
+    try {
+        let data = await dynamodb.put({
+            TableName: process.env.TABLE_NAME,
+            Item: item
+        }).promise();
+        responseStatusCode = 200;
+        body = JSON.stringify(item);
+        console.info(`DynamoDB put succeeded: ${JSON.stringify(data, null, 2)}`);
+    } catch (error) {
+        responseStatusCode = 500;
+        body = JSON.stringify(error, null, 2);
+        console.error(`Failed to get for: ${body}`);
+    }
+    logger.unwrapConsole(console);
+    callback(null, createApiGatewayResponse(responseStatusCode, body, headers));
 };

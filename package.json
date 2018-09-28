@@ -8,7 +8,8 @@
   },
   "scripts": {
     "pretest": "eslint --fix .",
-    "test": "nyc mocha --recursive './test/mocha/*.js'"
+    "test": "nyc mocha --recursive './test/mocha/*.js'",
+    "build": "scripts/make_dist.js deployment"
   },
   "repository": {
     "type": "git",

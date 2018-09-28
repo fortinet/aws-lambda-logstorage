@@ -1,0 +1,720 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "b582e95b-b4ce-4003-aa13-6802b3377ab5": {
+                "size": {
+                    "width": 1380,
+                    "height": 780
+                },
+                "position": {
+                    "x": 570,
+                    "y": 120
+                },
+                "z": 1,
+                "embeds": [
+                    "8f02c0f3-05db-4524-8f22-9e58a7272152"
+                ]
+            },
+            "8f02c0f3-05db-4524-8f22-9e58a7272152": {
+                "size": {
+                    "width": 840,
+                    "height": 390
+                },
+                "position": {
+                    "x": 600,
+                    "y": 150
+                },
+                "z": 2,
+                "parent": "b582e95b-b4ce-4003-aa13-6802b3377ab5",
+                "embeds": [
+                    "d54f7932-97a6-4bcd-9201-690b655f4b2c"
+                ],
+                "dependson": [
+                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
+                ]
+            },
+            "537ae399-be9a-4849-a92c-e912115eb2a7": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 60,
+                    "y": 270
+                },
+                "z": 1,
+                "embeds": [],
+                "iscontainedinside": [
+                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
+                ],
+                "dependson": [
+                    "d54f7932-97a6-4bcd-9201-690b655f4b2c"
+                ]
+            },
+            "a2d81319-0439-4443-a788-49621bbe0b26": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 420,
+                    "y": 30
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "d54f7932-97a6-4bcd-9201-690b655f4b2c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 780,
+                    "y": 180
+                },
+                "z": 3,
+                "parent": "8f02c0f3-05db-4524-8f22-9e58a7272152",
+                "embeds": [],
+                "iscontainedinside": [
+                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
+                ],
+                "dependson": [
+                    "a2d81319-0439-4443-a788-49621bbe0b26",
+                    "8f02c0f3-05db-4524-8f22-9e58a7272152",
+                    "b52835dd-6581-4c47-a73d-4b12b9a5e621"
+                ]
+            },
+            "5c24cf42-c56d-45fe-b4c2-c3f2fb32cab4": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 120,
+                    "y": 180
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "537ae399-be9a-4849-a92c-e912115eb2a7"
+                ],
+                "iscontainedinside": [
+                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
+                ]
+            },
+            "e0f090c3-c58e-455c-82b9-cb6fc87c53e8": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 290,
+                    "y": 100
+                },
+                "z": 1,
+                "embeds": [],
+                "dependson": [
+                    "5c24cf42-c56d-45fe-b4c2-c3f2fb32cab4",
+                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
+                ]
+            },
+            "364ac6d1-5b17-4b96-b10a-25684ad0f833": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 30,
+                    "y": 60
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "a2d81319-0439-4443-a788-49621bbe0b26"
+                ],
+                "dependson": [
+                    "e0f090c3-c58e-455c-82b9-cb6fc87c53e8"
+                ]
+            },
+            "95fbe90e-6ddf-42ab-94f3-0f533fd257fb": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -390,
+                    "y": 130
+                },
+                "z": 1,
+                "embeds": [],
+                "isassociatedwith": [
+                    "95fbe90e-6ddf-42ab-94f3-0f533fd257fb"
+                ]
+            },
+            "922ce2d4-cec0-4524-8f5e-eee094f74cd7": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -200,
+                    "y": 10
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "4d872695-06b3-4559-9949-b4b1ce950386": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -290,
+                    "y": 300
+                },
+                "z": 1,
+                "embeds": [],
+                "dependson": [
+                    "95fbe90e-6ddf-42ab-94f3-0f533fd257fb"
+                ]
+            },
+            "b52835dd-6581-4c47-a73d-4b12b9a5e621": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -290,
+                    "y": 460
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "4d872695-06b3-4559-9949-b4b1ce950386",
+                    "d54f7932-97a6-4bcd-9201-690b655f4b2c",
+                    "5c24cf42-c56d-45fe-b4c2-c3f2fb32cab4"
+                ]
+            },
+            "ca3b3ea1-13d5-4e3a-aff8-f5331033a165": {
+                "source": {
+                    "id": "b52835dd-6581-4c47-a73d-4b12b9a5e621"
+                },
+                "target": {
+                    "id": "d54f7932-97a6-4bcd-9201-690b655f4b2c"
+                },
+                "z": 4
+            },
+            "e7b7ccd6-61cb-4039-8689-0902b01427a6": {
+                "source": {
+                    "id": "b52835dd-6581-4c47-a73d-4b12b9a5e621"
+                },
+                "target": {
+                    "id": "5c24cf42-c56d-45fe-b4c2-c3f2fb32cab4"
+                },
+                "z": 5
+            },
+            "c3fd6ac9-57bd-438b-9755-bd07fb569cea": {
+                "source": {
+                    "id": "b52835dd-6581-4c47-a73d-4b12b9a5e621",
+                    "selector": "g:nth-child(1) g:nth-child(4) g:nth-child(2) circle:nth-child(1)     ",
+                    "port": "AWS::DependencyLink-*"
+                },
+                "target": {
+                    "id": "5c24cf42-c56d-45fe-b4c2-c3f2fb32cab4"
+                },
+                "z": 7
+            }
+        }
+    },
+    "Parameters": {
+        "ApiGatewayResource": {
+            "Type": "String",
+            "Default": "log"
+        },
+        "ApiGatewayStage": {
+            "Type": "String",
+            "Default": "dev"
+        }
+    },
+    "Resources": {
+        "ddbLogStorage": {
+            "Type": "AWS::DynamoDB::Table",
+            "Properties": {
+                "TableName": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "ddbLogStorage",
+                            {
+                                "Fn::Select": [
+                                    2,
+                                    {
+                                        "Fn::Split": [
+                                            "/",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                "AttributeDefinitions": [
+                    {
+                        "AttributeName": "logId",
+                        "AttributeType": "S"
+                    },
+                    {
+                        "AttributeName": "timestamp",
+                        "AttributeType": "N"
+                    }
+                ],
+                "KeySchema": [
+                    {
+                        "AttributeName": "logId",
+                        "KeyType": "HASH"
+                    },
+                    {
+                        "AttributeName": "timestamp",
+                        "KeyType": "RANGE"
+                    }
+                ],
+                "ProvisionedThroughput": {
+                    "ReadCapacityUnits": "5",
+                    "WriteCapacityUnits": "5"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "95fbe90e-6ddf-42ab-94f3-0f533fd257fb"
+                }
+            }
+        },
+        "lfLogStorage": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "FunctionName": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "lfLogStorage",
+                            {
+                                "Fn::Select": [
+                                    2,
+                                    {
+                                        "Fn::Split": [
+                                            "/",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                "Runtime": "nodejs8.10",
+                "Handler": "index.handler",
+                "Timeout": 300,
+                "Code": "../aws_lambda",
+                "Role": {
+                    "Fn::GetAtt": [
+                        "iamRoleLfLogStorage",
+                        "Arn"
+                    ]
+                },
+                "Environment": {
+                    "Variables": {
+                        "TABLE_NAME": {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "ddbLogStorage",
+                                    {
+                                        "Fn::Select": [
+                                            2,
+                                            {
+                                                "Fn::Split": [
+                                                    "/",
+                                                    {
+                                                        "Ref": "AWS::StackId"
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "4d872695-06b3-4559-9949-b4b1ce950386"
+                }
+            },
+            "DependsOn": [
+                "iamRoleLfLogStorage",
+                "ddbLogStorage"
+            ]
+        },
+        "iamRoleLfLogStorage": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "Path": "/",
+                "Policies": [
+                    {
+                        "PolicyName": "root",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Sid": "VisualEditor0",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "dynamodb:PutItem",
+                                        "dynamodb:GetItem",
+                                        "dynamodb:Scan"
+                                    ],
+                                    "Resource": {
+                                        "Fn::GetAtt": [
+                                            "ddbLogStorage",
+                                            "Arn"
+                                        ]
+                                    }
+                                },
+                                {
+                                    "Sid": "VisualEditor1",
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "dynamodb:ListTables",
+                                        "logs:CreateLogGroup",
+                                        "logs:CreateLogStream",
+                                        "logs:PutLogEvents"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "922ce2d4-cec0-4524-8f5e-eee094f74cd7"
+                }
+            },
+            "DependsOn": [
+                "ddbLogStorage"
+            ]
+        },
+        "agRaLogStorage": {
+            "Type": "AWS::ApiGateway::RestApi",
+            "Properties": {
+                "Name": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "apiGatewayLogStorage",
+                            {
+                                "Fn::Select": [
+                                    2,
+                                    {
+                                        "Fn::Split": [
+                                            "/",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ]
+                },
+                "EndpointConfiguration": {
+                    "Types": [
+                        "EDGE"
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b582e95b-b4ce-4003-aa13-6802b3377ab5"
+                }
+            }
+        },
+        "agRLogStorage": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "agRaLogStorage"
+                },
+                "ParentId": {
+                    "Fn::GetAtt": [
+                        "agRaLogStorage",
+                        "RootResourceId"
+                    ]
+                },
+                "PathPart": {
+                    "Ref": "ApiGatewayResource"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "8f02c0f3-05db-4524-8f22-9e58a7272152"
+                }
+            },
+            "DependsOn": [
+                "agRaLogStorage"
+            ]
+        },
+        "agDLogStorage": {
+            "Type": "AWS::ApiGateway::Deployment",
+            "Properties": {
+                "RestApiId": {
+                    "Ref": "agRaLogStorage"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "537ae399-be9a-4849-a92c-e912115eb2a7"
+                }
+            },
+            "DependsOn": [
+                "agMPostLogStorage"
+            ]
+        },
+        "agAkLogStorage": {
+            "Type": "AWS::ApiGateway::ApiKey",
+            "Properties": {
+                "Enabled": true,
+                "Name": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "apiGatewayApiKeyLogStorage",
+                            {
+                                "Fn::Select": [
+                                    2,
+                                    {
+                                        "Fn::Split": [
+                                            "/",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a2d81319-0439-4443-a788-49621bbe0b26"
+                }
+            }
+        },
+        "agMPostLogStorage": {
+            "Type": "AWS::ApiGateway::Method",
+            "Properties": {
+                "ResourceId": {
+                    "Ref": "agRLogStorage"
+                },
+                "RestApiId": {
+                    "Ref": "agRaLogStorage"
+                },
+                "ApiKeyRequired": true,
+                "AuthorizationType": "NONE",
+                "HttpMethod": "POST",
+                "Integration": {
+                    "Type": "AWS_PROXY",
+                    "IntegrationHttpMethod": "POST",
+                    "Uri": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "arn:aws:apigateway:",
+                                {
+                                    "Ref": "AWS::Region"
+                                },
+                                ":lambda:path/2015-03-31/functions/",
+                                {
+                                    "Fn::GetAtt": [
+                                        "lfLogStorage",
+                                        "Arn"
+                                    ]
+                                },
+                                "/invocations"
+                            ]
+                        ]
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "d54f7932-97a6-4bcd-9201-690b655f4b2c"
+                }
+            },
+            "DependsOn": [
+                "agAkLogStorage",
+                "agRLogStorage",
+                "lfLogStorage"
+            ]
+        },
+        "agSLogStorage": {
+            "Type": "AWS::ApiGateway::Stage",
+            "Properties": {
+                "DeploymentId": {
+                    "Ref": "agDLogStorage"
+                },
+                "RestApiId": {
+                    "Ref": "agRaLogStorage"
+                },
+                "StageName": {
+                    "Ref": "ApiGatewayStage"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "5c24cf42-c56d-45fe-b4c2-c3f2fb32cab4"
+                }
+            }
+        },
+        "agUpLogStorage": {
+            "Type": "AWS::ApiGateway::UsagePlan",
+            "Properties": {
+                "ApiStages": [
+                    {
+                        "Stage": {
+                            "Ref": "ApiGatewayStage"
+                        },
+                        "ApiId": {
+                            "Ref": "agRaLogStorage"
+                        }
+                    }
+                ],
+                "Quota": {
+                    "Limit": 10000,
+                    "Period": "MONTH"
+                },
+                "Throttle": {
+                    "BurstLimit": 200,
+                    "RateLimit": 100
+                },
+                "UsagePlanName": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "UsagePlan-LogStorage",
+                            {
+                                "Fn::Select": [
+                                    2,
+                                    {
+                                        "Fn::Split": [
+                                            "/",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "e0f090c3-c58e-455c-82b9-cb6fc87c53e8"
+                }
+            },
+            "DependsOn": [
+                "agSLogStorage",
+                "agRaLogStorage"
+            ]
+        },
+        "agUpkLogStorage": {
+            "Type": "AWS::ApiGateway::UsagePlanKey",
+            "Properties": {
+                "KeyId": {
+                    "Ref": "agAkLogStorage"
+                },
+                "KeyType": "API_KEY",
+                "UsagePlanId": {
+                    "Ref": "agUpLogStorage"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "364ac6d1-5b17-4b96-b10a-25684ad0f833"
+                }
+            },
+            "DependsOn": [
+                "agUpLogStorage"
+            ]
+        },
+        "lpLogStorage": {
+            "Type": "AWS::Lambda::Permission",
+            "Properties": {
+                "FunctionName": {
+                    "Ref": "lfLogStorage"
+                },
+                "Action": "lambda:InvokeFunction",
+                "Principal": "apigateway.amazonaws.com",
+                "SourceArn": {
+                    "Fn::Sub": [
+                        "arn:aws:execute-api:${region}:${account}:${api}/*",
+                        {
+                            "region": {
+                                "Ref": "AWS::Region"
+                            },
+                            "account": {
+                                "Ref": "AWS::AccountId"
+                            },
+                            "api": {
+                                "Ref": "agRaLogStorage"
+                            },
+                            "stage": {
+                                "Ref": "agSLogStorage"
+                            }
+                        }
+                    ]
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b52835dd-6581-4c47-a73d-4b12b9a5e621"
+                }
+            },
+            "DependsOn": [
+                "lfLogStorage",
+                "agMPostLogStorage",
+                "agSLogStorage"
+            ]
+        }
+    }
+}
