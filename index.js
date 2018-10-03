@@ -1,13 +1,16 @@
 'use strict';
 
 /*
-Author: Fortinet
 
 The following Lambda function will be used for FortiOS log storage.
 
 Currently the script has the following configurations (By environment variable):
 
 TABLE_NAME: (DynamoDB table name)
+
+Version: 1.0.0-beta
+
+Author: Fortinet
 
 */
 
