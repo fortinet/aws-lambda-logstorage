@@ -33,15 +33,14 @@ var event = null,
         console.log('handle callback is called with:', response, context);
     };
 
-function parseArgs(argv){
+function parseArgs(argv) {
     let pairs = {};
     let key = null;
-    for(let arg of argv){
-        if(typeof arg  === 'string' && arg.substr(0, 2) === '--'){
+    for (let arg of argv) {
+        if (typeof arg === 'string' && arg.substr(0, 2) === '--') {
             key = arg.substr(2);
-        }
-        else if(key !== null){
-            if(typeof arg  === 'string'){
+        } else if (key !== null) {
+            if (typeof arg === 'string') {
                 pairs[key] = arg.trim();
             }
             key = null;
@@ -55,16 +54,16 @@ let argv = parseArgs(process.argv);
 let entry = argv.entry ? argv.entry : `${__dirname}/index`,
     handlerName = argv.handler ? argv.handler : 'handler';
 
-if(argv['set-env']){
+if (argv['set-env']) {
     require(require.resolve(path.resolve(process.cwd(), argv['set-env'])));
 }
-if(argv['event'] && fs.existsSync(path.resolve(process.cwd(), argv['set-env']))) {
-        const data = fs.readFileSync(path.resolve(process.cwd(), argv['event']));
-        try {
-            event = JSON.parse(data.toString());
-        } catch (e) {
-            throw e;
-        }
+if (argv.event && fs.existsSync(path.resolve(process.cwd(), argv['set-env']))) {
+    const data = fs.readFileSync(path.resolve(process.cwd(), argv.event));
+    try {
+        event = JSON.parse(data.toString());
+    } catch (e) {
+        throw e;
+    }
 }
 
 // load entry script with an event
