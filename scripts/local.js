@@ -29,7 +29,8 @@ var fs = require('fs'),
 
 var event = null,
     context = {},
-    callback = function(context, response) { // eslint-disable-line no-shadow
+    // eslint-disable-next-line no-shadow
+    callback = function(context, response) {
         console.log('handle callback is called with:', response, context);
     };
 

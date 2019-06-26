@@ -49,7 +49,7 @@
         }],
         "linebreak-style": ["error", "unix"],
         "max-depth": ["error", 5 ],
-        "max-len": ["error", 100, {
+        "max-len": ["off", 100, {
             "ignoreRegExpLiterals": true
         }],
         "max-params": ["error", 7],
@@ -88,10 +88,10 @@
             "functions": false
         }],
         "no-whitespace-before-property": "error",
-        "operator-linebreak": ["error", "after"],
+        "operator-linebreak": ["off", "after"],
         "prefer-template": "error",
         "quote-props": ["error", "as-needed"],
-        "quotes": ["error", "single"],
+        "quotes": ["error", "single", {"avoidEscape": true}],
         "require-await": "error",
         "semi": ["error", "always", {
             "omitLastInOneLineBlock": true

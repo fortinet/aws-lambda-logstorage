@@ -14,7 +14,6 @@ Author: Fortinet
 
 */
 
-
 const AWS = require('aws-sdk');
 const logger = require('./logger');
 logger.wrapConsole(console);
@@ -36,8 +35,12 @@ const createApiGatewayResponse = function(httpStatusCode, body, headers, isBase6
         body: ''
     };
     try {
-        if (headers) { response.headers = headers }
-        if (body) { response.body = body }
+        if (headers) {
+            response.headers = headers;
+        }
+        if (body) {
+            response.body = body;
+        }
     } catch (error) {
         response.statusCode = 500;
         response.body = error.errorMessage;
@@ -69,23 +72,29 @@ exports.handler = async (event, context, callback) => {
     try {
         // make this function compatible with Api Gateway whether using aws
         // proxy integration or not.
+        // TODO: fix this:
+        // eslint-disable-next-line no-prototype-builtins
         body = event.hasOwnProperty('body') ? JSON.parse(event.body) : event;
         item = new FStitchLog(body);
     } catch (e) {
-        callback(null,
+        callback(
+            null,
             createApiGatewayResponse(500, {
                 errorMessage: 'Missing necessary log field.'
-            }));
+            })
+        );
         return;
     }
 
     console.debug(`Item init: ${JSON.stringify(item, null, 2)}`);
 
     try {
-        let data = await dynamodb.put({
-            TableName: process.env.TABLE_NAME,
-            Item: item
-        }).promise();
+        let data = await dynamodb
+            .put({
+                TableName: process.env.TABLE_NAME,
+                Item: item
+            })
+            .promise();
         responseStatusCode = 200;
         body = JSON.stringify(item);
         console.info(`DynamoDB put succeeded: ${JSON.stringify(data, null, 2)}`);

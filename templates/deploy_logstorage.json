@@ -12,9 +12,7 @@
                     "y": 120
                 },
                 "z": 1,
-                "embeds": [
-                    "8f02c0f3-05db-4524-8f22-9e58a7272152"
-                ]
+                "embeds": ["8f02c0f3-05db-4524-8f22-9e58a7272152"]
             },
             "8f02c0f3-05db-4524-8f22-9e58a7272152": {
                 "size": {
@@ -27,12 +25,8 @@
                 },
                 "z": 2,
                 "parent": "b582e95b-b4ce-4003-aa13-6802b3377ab5",
-                "embeds": [
-                    "d54f7932-97a6-4bcd-9201-690b655f4b2c"
-                ],
-                "dependson": [
-                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
-                ]
+                "embeds": ["d54f7932-97a6-4bcd-9201-690b655f4b2c"],
+                "dependson": ["b582e95b-b4ce-4003-aa13-6802b3377ab5"]
             },
             "537ae399-be9a-4849-a92c-e912115eb2a7": {
                 "size": {
@@ -45,12 +39,8 @@
                 },
                 "z": 1,
                 "embeds": [],
-                "iscontainedinside": [
-                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
-                ],
-                "dependson": [
-                    "d54f7932-97a6-4bcd-9201-690b655f4b2c"
-                ]
+                "iscontainedinside": ["b582e95b-b4ce-4003-aa13-6802b3377ab5"],
+                "dependson": ["d54f7932-97a6-4bcd-9201-690b655f4b2c"]
             },
             "a2d81319-0439-4443-a788-49621bbe0b26": {
                 "size": {
@@ -76,9 +66,7 @@
                 "z": 3,
                 "parent": "8f02c0f3-05db-4524-8f22-9e58a7272152",
                 "embeds": [],
-                "iscontainedinside": [
-                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
-                ],
+                "iscontainedinside": ["b582e95b-b4ce-4003-aa13-6802b3377ab5"],
                 "dependson": [
                     "a2d81319-0439-4443-a788-49621bbe0b26",
                     "8f02c0f3-05db-4524-8f22-9e58a7272152",
@@ -96,12 +84,8 @@
                 },
                 "z": 1,
                 "embeds": [],
-                "isassociatedwith": [
-                    "537ae399-be9a-4849-a92c-e912115eb2a7"
-                ],
-                "iscontainedinside": [
-                    "b582e95b-b4ce-4003-aa13-6802b3377ab5"
-                ]
+                "isassociatedwith": ["537ae399-be9a-4849-a92c-e912115eb2a7"],
+                "iscontainedinside": ["b582e95b-b4ce-4003-aa13-6802b3377ab5"]
             },
             "e0f090c3-c58e-455c-82b9-cb6fc87c53e8": {
                 "size": {
@@ -130,12 +114,8 @@
                 },
                 "z": 1,
                 "embeds": [],
-                "isassociatedwith": [
-                    "a2d81319-0439-4443-a788-49621bbe0b26"
-                ],
-                "dependson": [
-                    "e0f090c3-c58e-455c-82b9-cb6fc87c53e8"
-                ]
+                "isassociatedwith": ["a2d81319-0439-4443-a788-49621bbe0b26"],
+                "dependson": ["e0f090c3-c58e-455c-82b9-cb6fc87c53e8"]
             },
             "95fbe90e-6ddf-42ab-94f3-0f533fd257fb": {
                 "size": {
@@ -148,9 +128,7 @@
                 },
                 "z": 1,
                 "embeds": [],
-                "isassociatedwith": [
-                    "95fbe90e-6ddf-42ab-94f3-0f533fd257fb"
-                ]
+                "isassociatedwith": ["95fbe90e-6ddf-42ab-94f3-0f533fd257fb"]
             },
             "922ce2d4-cec0-4524-8f5e-eee094f74cd7": {
                 "size": {
@@ -175,9 +153,7 @@
                 },
                 "z": 1,
                 "embeds": [],
-                "dependson": [
-                    "95fbe90e-6ddf-42ab-94f3-0f533fd257fb"
-                ]
+                "dependson": ["95fbe90e-6ddf-42ab-94f3-0f533fd257fb"]
             },
             "b52835dd-6581-4c47-a73d-4b12b9a5e621": {
                 "size": {
@@ -322,10 +298,7 @@
                 "Timeout": 300,
                 "Code": "../aws_lambda",
                 "Role": {
-                    "Fn::GetAtt": [
-                        "iamRoleLfLogStorage",
-                        "Arn"
-                    ]
+                    "Fn::GetAtt": ["iamRoleLfLogStorage", "Arn"]
                 },
                 "Environment": {
                     "Variables": {
@@ -358,10 +331,7 @@
                     "id": "4d872695-06b3-4559-9949-b4b1ce950386"
                 }
             },
-            "DependsOn": [
-                "iamRoleLfLogStorage",
-                "ddbLogStorage"
-            ]
+            "DependsOn": ["iamRoleLfLogStorage", "ddbLogStorage"]
         },
         "iamRoleLfLogStorage": {
             "Type": "AWS::IAM::Role",
@@ -372,13 +342,9 @@
                         {
                             "Effect": "Allow",
                             "Principal": {
-                                "Service": [
-                                    "lambda.amazonaws.com"
-                                ]
+                                "Service": ["lambda.amazonaws.com"]
                             },
-                            "Action": [
-                                "sts:AssumeRole"
-                            ]
+                            "Action": ["sts:AssumeRole"]
                         }
                     ]
                 },
@@ -398,10 +364,7 @@
                                         "dynamodb:Scan"
                                     ],
                                     "Resource": {
-                                        "Fn::GetAtt": [
-                                            "ddbLogStorage",
-                                            "Arn"
-                                        ]
+                                        "Fn::GetAtt": ["ddbLogStorage", "Arn"]
                                     }
                                 },
                                 {
@@ -425,9 +388,7 @@
                     "id": "922ce2d4-cec0-4524-8f5e-eee094f74cd7"
                 }
             },
-            "DependsOn": [
-                "ddbLogStorage"
-            ]
+            "DependsOn": ["ddbLogStorage"]
         },
         "agRaLogStorage": {
             "Type": "AWS::ApiGateway::RestApi",
@@ -454,9 +415,7 @@
                     ]
                 },
                 "EndpointConfiguration": {
-                    "Types": [
-                        "EDGE"
-                    ]
+                    "Types": ["EDGE"]
                 }
             },
             "Metadata": {
@@ -472,10 +431,7 @@
                     "Ref": "agRaLogStorage"
                 },
                 "ParentId": {
-                    "Fn::GetAtt": [
-                        "agRaLogStorage",
-                        "RootResourceId"
-                    ]
+                    "Fn::GetAtt": ["agRaLogStorage", "RootResourceId"]
                 },
                 "PathPart": {
                     "Ref": "ApiGatewayResource"
@@ -486,9 +442,7 @@
                     "id": "8f02c0f3-05db-4524-8f22-9e58a7272152"
                 }
             },
-            "DependsOn": [
-                "agRaLogStorage"
-            ]
+            "DependsOn": ["agRaLogStorage"]
         },
         "agDLogStorage": {
             "Type": "AWS::ApiGateway::Deployment",
@@ -502,9 +456,7 @@
                     "id": "537ae399-be9a-4849-a92c-e912115eb2a7"
                 }
             },
-            "DependsOn": [
-                "agMPostLogStorage"
-            ]
+            "DependsOn": ["agMPostLogStorage"]
         },
         "agAkLogStorage": {
             "Type": "AWS::ApiGateway::ApiKey",
@@ -563,10 +515,7 @@
                                 },
                                 ":lambda:path/2015-03-31/functions/",
                                 {
-                                    "Fn::GetAtt": [
-                                        "lfLogStorage",
-                                        "Arn"
-                                    ]
+                                    "Fn::GetAtt": ["lfLogStorage", "Arn"]
                                 },
                                 "/invocations"
                             ]
@@ -579,11 +528,7 @@
                     "id": "d54f7932-97a6-4bcd-9201-690b655f4b2c"
                 }
             },
-            "DependsOn": [
-                "agAkLogStorage",
-                "agRLogStorage",
-                "lfLogStorage"
-            ]
+            "DependsOn": ["agAkLogStorage", "agRLogStorage", "lfLogStorage"]
         },
         "agSLogStorage": {
             "Type": "AWS::ApiGateway::Stage",
@@ -652,10 +597,7 @@
                     "id": "e0f090c3-c58e-455c-82b9-cb6fc87c53e8"
                 }
             },
-            "DependsOn": [
-                "agSLogStorage",
-                "agRaLogStorage"
-            ]
+            "DependsOn": ["agSLogStorage", "agRaLogStorage"]
         },
         "agUpkLogStorage": {
             "Type": "AWS::ApiGateway::UsagePlanKey",
@@ -673,9 +615,7 @@
                     "id": "364ac6d1-5b17-4b96-b10a-25684ad0f833"
                 }
             },
-            "DependsOn": [
-                "agUpLogStorage"
-            ]
+            "DependsOn": ["agUpLogStorage"]
         },
         "lpLogStorage": {
             "Type": "AWS::Lambda::Permission",
@@ -710,11 +650,7 @@
                     "id": "b52835dd-6581-4c47-a73d-4b12b9a5e621"
                 }
             },
-            "DependsOn": [
-                "lfLogStorage",
-                "agMPostLogStorage",
-                "agSLogStorage"
-            ]
+            "DependsOn": ["lfLogStorage", "agMPostLogStorage", "agSLogStorage"]
         }
     }
 }

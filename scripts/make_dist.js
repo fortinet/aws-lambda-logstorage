@@ -15,7 +15,7 @@ function runCmd(cmd, args = [], cwd = process.cwd(), options) {
     let output = '';
     return new Promise((resolve, reject) => {
         console.log(`run command:${cmd} ${args.join(' ')} on dir: ${cwd}`);
-        let cproc = spawn(cmd, args, { cwd: cwd, shell: process.env.shell});
+        let cproc = spawn(cmd, args, { cwd: cwd, shell: process.env.shell });
 
         cproc.stdout.on('data', function(data) {
             output += data;
@@ -53,7 +53,7 @@ function runCmd(cmd, args = [], cwd = process.cwd(), options) {
 function execCmd(cmd, cwd = process.cwd(), options) {
     return new Promise((resolve, reject) => {
         console.log(`run command:${cmd} on dir: ${cwd}`);
-        exec(cmd, { cwd: cwd}, (error, stdout, stderr) => {
+        exec(cmd, { cwd: cwd }, (error, stdout, stderr) => {
             if (error) {
                 if (options && !options.supressError) {
                     console.error(`exec error: ${error}`);
@@ -73,7 +73,6 @@ function execCmd(cmd, cwd = process.cwd(), options) {
         // TODO: npm install can generate warning. how to handle warnings here?
         console.log(err.toString());
     });
-
 }
 
 async function isGNUBash() {
@@ -89,7 +88,10 @@ async function isGNUBash() {
 
 async function makeTempDir(options = {}) {
     if (!_tempDir) {
+        // TODO: fix this
+        // eslint-disable-next-line require-atomic-updates
         _tempDir = await runCmd('mktemp', ['-d'], process.cwd(), options);
+        // eslint-disable-next-line require-atomic-updates
         _tempDir = _tempDir.trim();
     }
     return _tempDir;
@@ -98,6 +100,7 @@ async function makeTempDir(options = {}) {
 async function removeTempDir(options = {}) {
     if (_tempDir) {
         await execCmd(`rm -rf ${_tempDir}`, process.cwd(), options);
+        // eslint-disable-next-line require-atomic-updates
         _tempDir = null;
     }
     return true;
@@ -108,15 +111,17 @@ async function makeDir(location, cwd = process.cwd(), options = {}) {
 }
 
 async function copy(src, des, cwd = process.cwd(), options = {}) {
-    if (!await isGNUBash()) {
+    if (!(await isGNUBash())) {
         throw new Error('Sorry, this script can only run on a GNU bash shell.');
     }
     if (path.resolve(des).indexOf(path.resolve(src)) === 0) {
-        throw new Error(`\n\n( ͡° ͜ʖ ͡°) copying <${src}> to its subdir <${des}> creates` +
-        ' a circular reference. I won\'t allow this happen.');
+        throw new Error(
+            `\n\n( ͡° ͜ʖ ͡°) copying <${src}> to its subdir <${des}> creates a circular reference. I won't allow this happen.`
+        );
     }
     return new Promise((resolve, reject) => {
-        execCmd(`cp -rL ${src} ${des}`, cwd, options).then(output => resolve(output))
+        execCmd(`cp -rL ${src} ${des}`, cwd, options)
+            .then(output => resolve(output))
             .catch(error => reject(error));
     });
 }
@@ -136,9 +141,10 @@ async function deleteSafe(location, onDir, options = {}) {
     }
     let realPath = path.resolve(onDir, location);
     if (realPath.indexOf(onDir) !== 0 || realPath === onDir || realPath === '/') {
-        console.error(`\n\n( ͡° ͜ʖ ͡°) the locaton (${location}) falls outside directories ` +
-        `allowed: ${onDir}, or in somewhere inappropriate to delete.`);
-        console.error('( ͡° ͜ʖ ͡°) I don\'t allow you to delete it');
+        console.error(
+            `\n\n( ͡° ͜ʖ ͡°) the locaton (${location}) falls outside directories allowed: ${onDir}, or in somewhere inappropriate to delete.`
+        );
+        console.error("( ͡° ͜ʖ ͡°) I don't allow you to delete it");
         return false;
     }
     await execCmd(`rm -rf ${realPath}`, onDir, options);
@@ -171,12 +177,14 @@ async function find(search, onDir) {
     return await execCmd(`find . -name "${search}"`, onDir, {
         printStdout: false,
         printStderr: false
-    }).then(output => {
-        return output.split('\n').filter(line => line.trim());
-    }).catch(error => {
-        console.log(error.message);
-        return [];
-    });
+    })
+        .then(output => {
+            return output.split('\n').filter(line => line.trim());
+        })
+        .catch(error => {
+            console.log(error.message);
+            return [];
+        });
 }
 
 function readPackageJsonAt(location) {
@@ -202,15 +210,16 @@ async function moveSafe(src, des, options = {}) {
         return false;
     }
     if (path.resolve(des).indexOf(path.resolve(src)) === 0) {
-        throw new Error(`\n\n( ͡° ͜ʖ ͡°) moving <${src}> to its subdir <${des}> creates` +
-        ' a circular reference. I won\'t allow this happen.');
+        throw new Error(
+            `\n\n( ͡° ͜ʖ ͡°) moving <${src}> to its subdir <${des}> creates a circular reference. I won't allow this happen.`
+        );
     }
-    return await execCmd(`mv ${path.resolve(src)} ${path.resolve(des)}`,
-        process.cwd(), options);
+    return await execCmd(`mv ${path.resolve(src)} ${path.resolve(des)}`, process.cwd(), options);
 }
 
 async function zipSafe(fileName, src, excludeList = [], options = {}) {
-    let des, args = [],
+    let des,
+        args = [],
         realPath = path.resolve(src);
     // allow to create zip file in cwd, otherwise, create in the temp dir
     if (realPath.indexOf(process.cwd()) === 0) {
@@ -253,14 +262,18 @@ async function buildDeployment() {
         rDirSrcLambda = path.resolve(REAL_PROJECT_ROOT, './*'),
         rDirSrcTemplate = path.resolve(REAL_PROJECT_ROOT, './templates'),
         rDirDist = path.resolve(REAL_PROJECT_ROOT, './dist'),
-        rFileSrcCloudFormationScript =
-            path.resolve(REAL_PROJECT_ROOT, './scripts', 'deploy_logstorage.sh'),
-        rFileTempSrcCloudFormationScript =
-            path.resolve(rTempDir, 'deploy_logstorage.sh'),
-        rFileSrcCloudFormationParams =
-            path.resolve(REAL_PROJECT_ROOT, './templates', 'sample.logstorage_params.txt'),
-        rFileTempCloudFormationParams =
-            path.resolve(rTempDir, 'logstorage_params.txt'),
+        rFileSrcCloudFormationScript = path.resolve(
+            REAL_PROJECT_ROOT,
+            './scripts',
+            'deploy_logstorage.sh'
+        ),
+        rFileTempSrcCloudFormationScript = path.resolve(rTempDir, 'deploy_logstorage.sh'),
+        rFileSrcCloudFormationParams = path.resolve(
+            REAL_PROJECT_ROOT,
+            './templates',
+            'sample.logstorage_params.txt'
+        ),
+        rFileTempCloudFormationParams = path.resolve(rTempDir, 'logstorage_params.txt'),
         zipFileName;
 
     // create temp dir for lambda
@@ -268,9 +281,22 @@ async function buildDeployment() {
     // create distribution dir (if not created)
     await makeDir(rDirDist);
     // copy lambda function to temp dir
-    await copyAndDelete(rDirSrcLambda, rTempDirSrcLambda, ['node_modules', '.nyc_output', '.vscode',
-        'scripts', 'templates', 'test', 'dist', 'local*', 'images', '.eslintignore','.eslintrc',
-        '.gitignore', 'package-lock.json', '*.code-workspace']);
+    await copyAndDelete(rDirSrcLambda, rTempDirSrcLambda, [
+        'node_modules',
+        '.nyc_output',
+        '.vscode',
+        'scripts',
+        'templates',
+        'test',
+        'dist',
+        'local*',
+        'images',
+        '.eslintignore',
+        '.eslintrc',
+        '.gitignore',
+        'package-lock.json',
+        '*.code-workspace'
+    ]);
     // copy templates to temp dir
     await copy(rDirSrcTemplate, rTempDirSrcTemplate);
     // copy cloud formation script to temp dir

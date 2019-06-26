@@ -11,8 +11,7 @@ describe('Unit Testing', function() {
     describe('#index.js', function() {
         before(function() {
             process.env.TABLE_NAME = 'test-tablename';
-            dynamoDbPutMock = function() {
-            };
+            dynamoDbPutMock = function() {};
             AWS.DynamoDB.DocumentClient = function() {
                 this.put = function(data, cb) {
                     dynamoDbPutMock.call(this, data, cb);
@@ -33,25 +32,26 @@ describe('Unit Testing', function() {
                 },
                 email: 'test@test.com'
             };
-            callbackMock = function() {
-            };
-            dynamoDbPutMock = function() {
-            };
+            callbackMock = function() {};
+            dynamoDbPutMock = function() {};
         });
         it('#handler exists', function(done) {
             assert.isFunction(index.handler);
             done();
         });
         it('#handler call through', function(done) {
-            var logItemMock = {Item: {
-                email: eventMock.email,
-                eventType: eventMock.data.eventtype,
-                logId: eventMock.data.rawlog.logid,
-                serial: eventMock.data.sn,
-                stitchName: eventMock.data.stitch,
-                timestamp: eventMock.data.time * 1000,
-                log: {logid: eventMock.data.rawlog.logid}
-            }, TableName: process.env.TABLE_NAME};
+            var logItemMock = {
+                Item: {
+                    email: eventMock.email,
+                    eventType: eventMock.data.eventtype,
+                    logId: eventMock.data.rawlog.logid,
+                    serial: eventMock.data.sn,
+                    stitchName: eventMock.data.stitch,
+                    timestamp: eventMock.data.time * 1000,
+                    log: { logid: eventMock.data.rawlog.logid }
+                },
+                TableName: process.env.TABLE_NAME
+            };
 
             dynamoDbPutMock = function(data, cb) {
                 assert.equal(data.TableName, 'test-tablename');
@@ -76,15 +76,18 @@ describe('Unit Testing', function() {
             };
             callbackMock = function(data) {
                 assert.isObject(data, 'callback parameter is object type');
-                assert.property(data, 'errorMessage',
-                    'callback parameter contains property: [errorMessage]');
+                assert.property(
+                    data,
+                    'errorMessage',
+                    'callback parameter contains property: [errorMessage]'
+                );
             };
             index.handler(eventMock, {}, callbackMock);
             done();
         });
 
         it('#handler should handle error in dynamodb.put', function(done) {
-            var testCallbackData = {foo: 'bar'};
+            var testCallbackData = { foo: 'bar' };
             // test returning no error
             callbackMock = function(callbackError, callbackData) {
                 assert.isNotNull(callbackData, 'callback data should not be null');
@@ -138,8 +141,7 @@ describe('Unit Testing', function() {
             afterEach(function() {
                 logger.unwrapConsole(console);
             });
-            it('#console.info(), debug(), warn(), and error() should be called when DEBUG_MODE on',
-            function(done) {
+            it('#console.info(), debug(), warn(), and error() should be called when DEBUG_MODE on', function(done) {
                 process.env.DEBUG_MODE = true;
                 let _infoGetCalled = false,
                     _debugGetCalled = false,
@@ -173,41 +175,40 @@ describe('Unit Testing', function() {
                 assert.isTrue(_errorGetCalled, '_error get called');
                 done();
             });
-            it('#console.info(), debug() should NOT be called when DEBUG_MODE off',
-             function(done) {
-                 delete process.env.DEBUG_MODE;
-                 let _infoGetCalled = false,
-                     _debugGetCalled = false,
-                     _warnGetCalled = false,
-                     _errorGetCalled = false;
-                 var stubInfo = sinon.stub(console, '_info').callsFake(function() {
-                     _infoGetCalled = true;
-                 });
-                 var stubDebug = sinon.stub(console, '_debug').callsFake(function() {
-                     _debugGetCalled = true;
-                 });
-                 var stubWarn = sinon.stub(console, '_warn').callsFake(function() {
-                     _warnGetCalled = true;
-                 });
-                 var stubError = sinon.stub(console, '_error').callsFake(function() {
-                     _errorGetCalled = true;
-                 });
-                 console.log('test');
-                 console.info('test');
-                 console.warn('test');
-                 console.error('test');
-                 console.debug('test');
-                 stubInfo.restore();
-                 stubDebug.restore();
-                 stubWarn.restore();
-                 stubError.restore();
+            it('#console.info(), debug() should NOT be called when DEBUG_MODE off', function(done) {
+                delete process.env.DEBUG_MODE;
+                let _infoGetCalled = false,
+                    _debugGetCalled = false,
+                    _warnGetCalled = false,
+                    _errorGetCalled = false;
+                var stubInfo = sinon.stub(console, '_info').callsFake(function() {
+                    _infoGetCalled = true;
+                });
+                var stubDebug = sinon.stub(console, '_debug').callsFake(function() {
+                    _debugGetCalled = true;
+                });
+                var stubWarn = sinon.stub(console, '_warn').callsFake(function() {
+                    _warnGetCalled = true;
+                });
+                var stubError = sinon.stub(console, '_error').callsFake(function() {
+                    _errorGetCalled = true;
+                });
+                console.log('test');
+                console.info('test');
+                console.warn('test');
+                console.error('test');
+                console.debug('test');
+                stubInfo.restore();
+                stubDebug.restore();
+                stubWarn.restore();
+                stubError.restore();
 
-                 assert.isFalse(_infoGetCalled, '_info not get called');
-                 assert.isFalse(_debugGetCalled, '_debug not get called');
-                 assert.isTrue(_warnGetCalled, '_warn get called');
-                 assert.isTrue(_errorGetCalled, '_error get called');
-                 done();
-             });
+                assert.isFalse(_infoGetCalled, '_info not get called');
+                assert.isFalse(_debugGetCalled, '_debug not get called');
+                assert.isTrue(_warnGetCalled, '_warn get called');
+                assert.isTrue(_errorGetCalled, '_error get called');
+                done();
+            });
         });
     });
 });

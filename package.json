@@ -1,29 +1,30 @@
 {
-  "name": "aws-lambda-logstorage",
-  "version": "1.0.0-beta",
-  "description": "Save log to DB storage",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "pretest": "eslint --fix .",
-    "test": "nyc mocha --recursive './test/mocha/*.js'",
-    "build": "scripts/make_dist.js deployment"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://www.github.com/fortinet/aws-lambda-logstorage"
-  },
-  "author": "fortinet",
-  "license": "MIT",
-  "devDependencies": {
-    "aws-sdk": "^2.320.0",
-    "chai": "^4.1.2",
-    "eslint": "^5.4.0",
-    "eslint-plugin-mocha": "^5.2.0",
-    "mocha": "^5.2.0",
-    "nyc": "^14.0.0",
-    "sinon": "^6.3.4"
-  }
+    "name": "aws-lambda-logstorage",
+    "version": "1.0.0-beta",
+    "description": "Save log to DB storage",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "pretest": "eslint --fix .",
+        "test": "nyc mocha --recursive './test/mocha/*.js'",
+        "build": "scripts/make_dist.js deployment"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://www.github.com/fortinet/aws-lambda-logstorage"
+    },
+    "author": "fortinet",
+    "license": "MIT",
+    "devDependencies": {
+        "aws-sdk": "^2.320.0",
+        "chai": "^4.1.2",
+        "eslint": "^5.4.0",
+        "eslint-plugin-mocha": "^5.2.0",
+        "ftnt-devops-ci": "github:guardhao104/ftnt-devops-ci",
+        "mocha": "^5.2.0",
+        "nyc": "^14.0.0",
+        "sinon": "^6.3.4"
+    }
 }
