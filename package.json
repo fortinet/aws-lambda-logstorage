@@ -1,6 +1,6 @@
 {
     "name": "aws-lambda-logstorage",
-    "version": "1.0.0-beta",
+    "version": "1.0.0",
     "description": "Save log to DB storage",
     "main": "index.js",
     "directories": {
