@@ -18,13 +18,13 @@
     "author": "fortinet",
     "license": "MIT",
     "devDependencies": {
-        "aws-sdk": "^2.320.0",
-        "chai": "^4.1.2",
-        "eslint": "^5.16.0",
-        "eslint-plugin-mocha": "^5.2.0",
+        "aws-sdk": "^2.610.0",
+        "chai": "^4.2.0",
+        "eslint": "^6.8.0",
+        "eslint-plugin-mocha": "^6.2.2",
         "ftnt-devops-ci": "github:guardhao104/ftnt-devops-ci",
-        "mocha": "^5.2.0",
-        "nyc": "^14.1.1",
-        "sinon": "^6.3.4"
+        "mocha": "^7.0.0",
+        "nyc": "^15.0.0",
+        "sinon": "^8.1.1"
     }
 }

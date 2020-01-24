@@ -293,7 +293,7 @@
                         ]
                     ]
                 },
-                "Runtime": "nodejs8.10",
+                "Runtime": "nodejs12.x",
                 "Handler": "index.handler",
                 "Timeout": 300,
                 "Code": "../aws_lambda",
