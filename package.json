@@ -9,7 +9,9 @@
     "scripts": {
         "pretest": "eslint --fix .",
         "test": "nyc mocha --recursive './test/mocha/*.js'",
-        "build": "scripts/make_dist.js deployment"
+        "build": "scripts/make_dist.js deployment",
+        "lint-check": "node node_modules/ftnt-devops-ci/bin/ftnt-devops-ci.js c -fl  -F .eslintignore -L .eslintignore \"{*,**/*}{.js,.json,.ts}\"",
+        "lint-fix": "node node_modules/ftnt-devops-ci/bin/ftnt-devops-ci.js f -fl  -F .eslintignore -L .eslintignore \"**/*{.js,.json,.ts}\""
     },
     "repository": {
         "type": "git",
@@ -18,13 +20,13 @@
     "author": "fortinet",
     "license": "MIT",
     "devDependencies": {
-        "aws-sdk": "^2.610.0",
+        "aws-sdk": "^2.779.0",
         "chai": "^4.2.0",
         "eslint": "^6.8.0",
-        "eslint-plugin-mocha": "^6.2.2",
+        "eslint-plugin-mocha": "^6.3.0",
         "ftnt-devops-ci": "github:guardhao104/ftnt-devops-ci",
-        "mocha": "^7.0.0",
-        "nyc": "^15.0.0",
+        "mocha": "^8.2.0",
+        "nyc": "^15.1.0",
         "sinon": "^8.1.1"
     }
 }

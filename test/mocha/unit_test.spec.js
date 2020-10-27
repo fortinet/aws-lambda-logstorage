@@ -14,7 +14,16 @@ describe('Unit Testing', function() {
             dynamoDbPutMock = function() {};
             AWS.DynamoDB.DocumentClient = function() {
                 this.put = function(data, cb) {
-                    dynamoDbPutMock.call(this, data, cb);
+                    if (cb) {
+                        dynamoDbPutMock.call(this, data, cb);
+                    } else {
+                        this.data = data;
+                        return {
+                            promise: function() {
+                                return Promise.resolve(dynamoDbPutMock.call(this, data));
+                            }
+                        };
+                    }
                 };
             };
             index = require(path.resolve(REAL_PROJECT_ROOT, 'index'));
@@ -53,18 +62,16 @@ describe('Unit Testing', function() {
                 TableName: process.env.TABLE_NAME
             };
 
-            dynamoDbPutMock = function(data, cb) {
+            dynamoDbPutMock = function(data) {
                 assert.equal(data.TableName, 'test-tablename');
                 assert.deepEqual(data, logItemMock);
-                assert.isFunction(cb);
             };
 
             index.handler(eventMock, {}, callbackMock);
             // no email specified
             delete eventMock.email;
-            dynamoDbPutMock = function(data, cb) {
+            dynamoDbPutMock = function(data) {
                 assert.equal(data.Item.email, '');
-                assert.isFunction(cb);
             };
             index.handler(eventMock, {}, callbackMock);
             done();
@@ -74,10 +81,13 @@ describe('Unit Testing', function() {
             eventMock = {
                 foo: 'bar'
             };
-            callbackMock = function(data) {
+            callbackMock = function(error, data) {
+                assert.isNull(error);
                 assert.isObject(data, 'callback parameter is object type');
+                assert.isObject(data.body, 'callback parameter is object type');
+                // is an error object
                 assert.property(
-                    data,
+                    data.body,
                     'errorMessage',
                     'callback parameter contains property: [errorMessage]'
                 );
@@ -93,20 +103,20 @@ describe('Unit Testing', function() {
                 assert.isNotNull(callbackData, 'callback data should not be null');
                 assert.isNull(callbackError, 'callback error should be null');
             };
-            dynamoDbPutMock = function(data, dbPutCallback) {
+            dynamoDbPutMock = function(data) {
                 assert.isNotNull(data);
-                dbPutCallback(null, testCallbackData);
+                return testCallbackData;
             };
             index.handler(eventMock, {}, callbackMock);
 
             // test returning error
             callbackMock = function(callbackError, callbackData) {
-                assert.isNotNull(callbackError, 'callback error should not be null');
-                assert.isUndefined(callbackData, 'callback data should be undefined');
+                assert.isNull(callbackError, 'callback error should be null');
+                assert.isDefined(callbackData, 'callback data should be defined');
             };
-            dynamoDbPutMock = function(data, dbPutCallback) {
+            dynamoDbPutMock = function(data) {
                 assert.isNotNull(data);
-                dbPutCallback(testCallbackData, null);
+                return testCallbackData;
             };
             index.handler(eventMock, {}, callbackMock);
             done();
